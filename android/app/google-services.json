@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "582003945557",
+    "project_id": "patika-8593c",
+    "storage_bucket": "patika-8593c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:582003945557:android:e82e756a6462f7dd33a4dc",
+        "android_client_info": {
+          "package_name": "com.banane"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "582003945557-k21psf2hqvrf2onepudnrb606u27di15.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABRvurhntJKqdVZ_C2EOWu5bkq7o1vzps"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "582003945557-k21psf2hqvrf2onepudnrb606u27di15.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
