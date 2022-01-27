@@ -21,7 +21,7 @@ const App = () => {
   const pushData = () => {
     reference.push({
       name: 'asfasdK',
-      surname: '999mfk',
+      surname: '000',
     });
   };
 
