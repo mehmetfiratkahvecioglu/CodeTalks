@@ -4,11 +4,14 @@ import styles from './SignIn.style';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import {Formik} from 'formik';
-const SignIn = () => {
+const SignIn = ({navigation}) => {
   const handleSignIn = xx => {
     console.log(xx);
   };
-  console.log('hi');
+
+  const handleNavigation = () => {
+    navigation.navigate('SignUp');
+  };
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -35,7 +38,11 @@ const SignIn = () => {
                 theme={'primary'}
                 onPress={handleSubmit}
               />
-              <Button title="Kayıt Ol" theme={'secondary'} />
+              <Button
+                title="Kayıt Ol"
+                theme={'secondary'}
+                onPress={handleNavigation}
+              />
             </>
           )}
         </Formik>

@@ -1,13 +1,8 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
-import SignUp from './pages/SignUp';
-import SignIn from './pages/SignIn';
+import AuthStack from './Navigation/AuthStack';
 const App = () => {
-  return (
-    <View style={styles.container}>
-      <SignUp />
-    </View>
-  );
+  return <AuthStack />;
 };
 
 export default App;
