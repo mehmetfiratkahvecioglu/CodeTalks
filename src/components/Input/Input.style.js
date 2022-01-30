@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1.5,
     borderColor: 'white',
     padding: 5,
+    color: 'white',
   },
 });
 

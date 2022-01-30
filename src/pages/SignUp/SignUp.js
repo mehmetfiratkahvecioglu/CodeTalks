@@ -1,12 +1,51 @@
 import {View, Text} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './SignUp.style';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import {Formik} from 'formik';
+import auth from '@react-native-firebase/auth';
+import {showMessage} from 'react-native-flash-message';
 const SignUp = ({navigation}) => {
-  const handleSignUp = values => {
-    console.log(values);
+  const [loading, setLoading] = useState(false);
+  const handleSignUp = async formValues => {
+    if (
+      !formValues.usermail ||
+      !formValues.password ||
+      !formValues.repassword
+    ) {
+      showMessage({
+        message: 'E-posta veya şifre alanları boş bırakılamaz.',
+        type: 'danger',
+      });
+      return;
+    }
+    if (formValues.password !== formValues.repassword) {
+      showMessage({
+        message: 'Parolalar uyuşmuyor.',
+        type: 'danger',
+      });
+      return;
+    }
+    try {
+      setLoading(true);
+      await auth().createUserWithEmailAndPassword(
+        formValues.email,
+        formValues.password,
+      );
+      setLoading(false);
+      navigation.navigate('SignIn');
+      showMessage({
+        message: 'Kayıt Oluşturuldu',
+        type: 'success',
+      });
+    } catch (error) {
+      showMessage({
+        message: error.code,
+        type: 'danger',
+      });
+      setLoading(false);
+    }
   };
 
   const handleNavigation = () => {
@@ -43,6 +82,7 @@ const SignUp = ({navigation}) => {
                 title="Kayıt Ol"
                 theme={'secondary'}
                 onPress={handleSubmit}
+                loading={loading}
               />
               <Button
                 title="Geri Dön"

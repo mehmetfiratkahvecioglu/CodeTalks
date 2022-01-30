@@ -1,12 +1,36 @@
 import {View, Text} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './SignIn.style';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import {Formik} from 'formik';
+import auth from '@react-native-firebase/auth';
+import {showMessage} from 'react-native-flash-message';
 const SignIn = ({navigation}) => {
-  const handleSignIn = xx => {
-    console.log(xx);
+  const [loading, setLoading] = useState(false);
+  const handleSignIn = async formValues => {
+    if (!formValues.usermail && !formValues.password) {
+      showMessage({
+        message: 'E-posta veya şifre boş bırakılamaz.',
+        type: 'danger',
+      });
+      return;
+    }
+
+    try {
+      setLoading(true);
+      await auth().signInWithEmailAndPassword(
+        formValues.email,
+        formValues.password,
+      );
+      setLoading(false);
+    } catch (error) {
+      showMessage({
+        message: error.code,
+        type: 'danger',
+      });
+      setLoading(false);
+    }
   };
 
   const handleNavigation = () => {
@@ -37,6 +61,7 @@ const SignIn = ({navigation}) => {
                 title="Giriş Yap"
                 theme={'primary'}
                 onPress={handleSubmit}
+                loading={loading}
               />
               <Button
                 title="Kayıt Ol"
