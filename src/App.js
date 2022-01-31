@@ -12,11 +12,7 @@ const App = () => {
       setUserSession(!!user);
     });
   }, []);
-  useEffect(() => {
-    auth().onAuthStateChanged(user => {
-      setUserSession(user);
-    });
-  }, []);
+
   return (
     <NavigationContainer>
       {!userSession ? <AuthStack /> : <MainStack />}
