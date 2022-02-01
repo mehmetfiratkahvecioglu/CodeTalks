@@ -2,21 +2,32 @@ import {View, TextInput} from 'react-native';
 import React, {useState} from 'react';
 import Button from '../../Button';
 import Modal from 'react-native-modal';
+import styles from './ContentInputModal.style';
 const ContentInputModal = ({visible, onClose, onSend}) => {
   const [text, setText] = useState('');
+  const handleSendContent = () => {
+    if (text.length > 0) {
+      onSend(text);
+      setText('');
+    }
+  };
   return (
     <Modal
+      style={styles.modalContainer}
       isVisible={visible}
       onSwipeComplete={onClose}
       onBackdropPress={onClose}
-      onBackbuttonPress={onClose}>
-      <View>
-        <TextInput placeholder="Mesaj yaz." onChangeText={setText} />
-        <Button
-          title={'Gönder'}
-          theme={'primary'}
-          onPress={() => onSend(text)}
-        />
+      onBackButtonPress={onClose}>
+      <View style={styles.innerContainer}>
+        <View style={styles.inputContainer}>
+          <TextInput
+            value={text}
+            placeholder="Mesaj yaz."
+            onChangeText={setText}
+            multiline
+          />
+        </View>
+        <Button title={'Gönder'} onPress={handleSendContent} />
       </View>
     </Modal>
   );

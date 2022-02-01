@@ -7,7 +7,11 @@ const MainStack = () => {
   const Stack = createNativeStackNavigator();
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerTitleAlign: 'center',
+        headerTitleStyle: {color: '#0d47a1'},
+      }}>
       <Stack.Screen name="Messages" component={Messages} />
       <Stack.Screen name="Rooms" component={Rooms} />
     </Stack.Navigator>
