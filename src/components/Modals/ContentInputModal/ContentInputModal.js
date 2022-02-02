@@ -8,6 +8,7 @@ const ContentInputModal = ({visible, onClose, onSend}) => {
   const handleSendContent = () => {
     if (text.length > 0) {
       onSend(text);
+      onClose();
       setText('');
     }
   };

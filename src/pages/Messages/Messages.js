@@ -25,12 +25,10 @@ const Messages = () => {
       });
   }, []);
 
-  console.log(contentList);
   const handleModalToggle = () => {
     setisInputModalVisible(!isInputModalVisible);
   };
   const handleSend = content => {
-    handleModalToggle();
     sendContent(content);
   };
 
