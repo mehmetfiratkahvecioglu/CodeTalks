@@ -16,11 +16,7 @@ const Messages = () => {
       .on('value', snapshot => {
         const contentData = snapshot.val();
 
-        if (!contentData) {
-          return;
-        }
-
-        const parsedContentData = parseContentData(contentData);
+        const parsedContentData = parseContentData(contentData || {});
         setContentList(parsedContentData);
       });
   }, []);

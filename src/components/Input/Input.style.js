@@ -1,11 +1,11 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {marginVertical: 5},
   input: {
     borderBottomWidth: 1.5,
     borderColor: 'white',
-    padding: 5,
+    padding: Platform.OS === 'ios' ? 5 : 5,
     color: 'white',
   },
 });
