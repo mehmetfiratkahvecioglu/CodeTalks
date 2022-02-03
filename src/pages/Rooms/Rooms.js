@@ -1,21 +1,65 @@
-import {View, Text, Button} from 'react-native';
-import React from 'react';
+import {View, Text, FlatList} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import FloatingButton from '../../components/FloatingButton';
-const Rooms = () => {
-  return (
-    <View style={{flex: 1, justifyContent: 'center'}}>
-      <Text>***********ROOMSSSS*********</Text>
-      <Icon name="rocket" color={'red'} size={40} />
-      <FloatingButton />
+import ContentInputModal from '../../components/Modals/ContentInputModal';
+import parseRoomListData from '../../utils/parseRoomListData';
+import RoomCard from '../../components/Cards/RoomCard';
+import styles from './Rooms.style';
+const Rooms = ({navigation}) => {
+  const [roomList, setRoomList] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const handleModalToggle = () => {
+    setModalVisible(!modalVisible);
+  };
+  useEffect(() => {
+    database()
+      .ref('rooms')
+      .on('value', snapshot => {
+        const snapValue = snapshot.val();
+        const parsedData = parseRoomListData(snapValue || []);
+        setRoomList(parsedData);
+      });
+  }, []);
 
-      <Button
-        title="çıkış"
-        onPress={() => {
-          auth().signOut();
-        }}
+  const handleSendContent = content => {
+    const userMail = auth().currentUser.email;
+    const roomObject = {
+      userMail,
+      roomName: content,
+      date: new Date().toISOString(),
+    };
+
+    database().ref('rooms').push(roomObject);
+  };
+
+  const handleNavigateToMessages = room => {
+    navigation.navigate('Messages', {room});
+  };
+  const renderItem = ({item}) => (
+    <RoomCard
+      room={item}
+      onPress={() => {
+        handleNavigateToMessages(item);
+      }}
+    />
+  );
+  return (
+    <View style={styles.container}>
+      <FlatList
+        style={styles.flatList}
+        data={roomList}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        numColumns={2}
       />
+      <ContentInputModal
+        visible={modalVisible}
+        onClose={handleModalToggle}
+        onSend={handleSendContent}
+      />
+      <FloatingButton onPress={handleModalToggle} />
     </View>
   );
 };

@@ -11,9 +11,6 @@ const App = () => {
     auth().onAuthStateChanged(user => {
       setUserSession(!!user);
     });
-    return () => {
-      isMounted = false;
-    }; // cleanup toggles value, if unmounted
   }, []);
 
   return (

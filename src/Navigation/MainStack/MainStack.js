@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Rooms from '../../pages/Rooms';
 import Messages from '../../pages/Messages';
@@ -15,9 +14,10 @@ const MainStack = () => {
         headerTitleStyle: {color: '#0d47a1'},
       }}>
       <Stack.Screen
-        name="Messages"
-        component={Messages}
+        name="Rooms"
+        component={Rooms}
         options={{
+          title: 'Odalar',
           headerRight: () => (
             <Icon
               name="logout"
@@ -28,7 +28,14 @@ const MainStack = () => {
           ),
         }}
       />
-      <Stack.Screen name="Rooms" component={Rooms} />
+      <Stack.Screen
+        name="Messages"
+        component={Messages}
+        options={{
+          title: 'Mesajlar',
+          headerTintColor: '#0d47a1',
+        }}
+      />
     </Stack.Navigator>
   );
 };

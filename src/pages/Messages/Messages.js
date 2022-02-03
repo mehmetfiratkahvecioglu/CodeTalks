@@ -7,12 +7,13 @@ import auth from '@react-native-firebase/auth';
 import parseContentData from '../../utils/parseContentData';
 import ContentInputCard from '../../components/Cards/ContentInputCard';
 import styles from './Messages.style';
-const Messages = () => {
+const Messages = ({navigation, route}) => {
   const [isInputModalVisible, setisInputModalVisible] = useState(false);
   const [contentList, setContentList] = useState([]);
+  const roomId = route.params.room.id;
   useEffect(() => {
     database()
-      .ref('messages')
+      .ref(`rooms/${roomId}/messages`)
       .on('value', snapshot => {
         const contentData = snapshot.val();
 
@@ -36,7 +37,7 @@ const Messages = () => {
       date: new Date().toISOString(),
     };
 
-    database().ref('messages').push(contentObj);
+    database().ref(`rooms/${roomId}/messages`).push(contentObj);
   };
   const renderItem = ({item}) => <ContentInputCard message={item} />;
   return (
