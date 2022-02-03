@@ -3,7 +3,12 @@ import React, {useState} from 'react';
 import Button from '../../Button';
 import Modal from 'react-native-modal';
 import styles from './ContentInputModal.style';
-const ContentInputModal = ({visible, onClose, onSend}) => {
+const ContentInputModal = ({
+  visible,
+  onClose,
+  onSend,
+  placeholder = 'Mesaj yaz.',
+}) => {
   const [text, setText] = useState('');
   const handleSendContent = () => {
     if (text.length > 0) {
@@ -23,7 +28,7 @@ const ContentInputModal = ({visible, onClose, onSend}) => {
         <View style={styles.inputContainer}>
           <TextInput
             value={text}
-            placeholder="Mesaj yaz."
+            placeholder={placeholder}
             onChangeText={setText}
             multiline
           />
