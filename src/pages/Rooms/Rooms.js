@@ -58,6 +58,7 @@ const Rooms = ({navigation}) => {
         visible={modalVisible}
         onClose={handleModalToggle}
         onSend={handleSendContent}
+        placeholder="Oda ismi giriniz"
       />
       <FloatingButton onPress={handleModalToggle} />
     </View>

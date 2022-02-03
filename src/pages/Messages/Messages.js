@@ -1,4 +1,4 @@
-import {View, Text, FlatList} from 'react-native';
+import {View, FlatList} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import FloatingButton from '../../components/FloatingButton';
 import ContentInputModal from '../../components/Modals/ContentInputModal';
@@ -7,7 +7,8 @@ import auth from '@react-native-firebase/auth';
 import parseContentData from '../../utils/parseContentData';
 import ContentInputCard from '../../components/Cards/ContentInputCard';
 import styles from './Messages.style';
-const Messages = ({navigation, route}) => {
+import {showMessage} from 'react-native-flash-message';
+const Messages = ({route}) => {
   const [isInputModalVisible, setisInputModalVisible] = useState(false);
   const [contentList, setContentList] = useState([]);
   const roomId = route.params.room.id;
@@ -17,8 +18,14 @@ const Messages = ({navigation, route}) => {
       .on('value', snapshot => {
         const contentData = snapshot.val();
 
-        const parsedContentData = parseContentData(contentData || {});
+        const parsedContentData = parseContentData(contentData || []);
         setContentList(parsedContentData);
+        if (parsedContentData.length === 0) {
+          showMessage({
+            message: `${route.params.room.roomName} odası kuruldu, ilk mesajı sen yaz!.`,
+            type: 'success',
+          });
+        }
       });
   }, []);
 
