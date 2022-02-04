@@ -9,17 +9,6 @@ import {showMessage} from 'react-native-flash-message';
 const SignUp = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const handleSignUp = async formValues => {
-    if (
-      !formValues.usermail ||
-      !formValues.password ||
-      !formValues.repassword
-    ) {
-      showMessage({
-        message: 'E-posta veya şifre alanları boş bırakılamaz.',
-        type: 'danger',
-      });
-      return;
-    }
     if (formValues.password !== formValues.repassword) {
       showMessage({
         message: 'Parolalar uyuşmuyor.',

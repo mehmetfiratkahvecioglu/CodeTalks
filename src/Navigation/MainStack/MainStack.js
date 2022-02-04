@@ -31,10 +31,10 @@ const MainStack = () => {
       <Stack.Screen
         name="Messages"
         component={Messages}
-        options={{
-          title: 'Mesajlar',
+        options={({route}) => ({
+          title: route.params.room.roomName,
           headerTintColor: '#0d47a1',
-        }}
+        })}
       />
     </Stack.Navigator>
   );
