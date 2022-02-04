@@ -33,4 +33,4 @@ Proje dizininde şunları çalıştırabilirsiniz:
 npx react-native run-android
 ```
 ## Daha fazla bilgi için :
-Daha fazlasını şuradan öğrenebilirsiniz [React Native Web Site](https://github.com/ibrahimaykutbas/CodeTalks)
+Daha fazlasını şuradan öğrenebilirsiniz [React Native Documentation](https://github.com/ibrahimaykutbas/CodeTalks)
