@@ -1,4 +1,12 @@
 # CodeTalks
+<img src="images/codetalks1.png" height="500" width="250" > <img src="images/codetalks2.png" height="500" width="250" > <img src="images/codetalks3.png" height="500" width="250" ><img src="images/codetalks4.png" height="500" width="250" > <img src="images/codetalks5.png" height="500" width="250" > <img src="images/codetalks6.png" height="500" width="250" > <img src="images/codetalks7.png" height="500" width="250" >
+
+ 
+
+
+
+
+
 CodeTalks yazılım alanıyla ilgili olan herkesi bir araya getirip, diledikleri konularda sohbet odaları açmayı veya açılan odalarda keyifli muhabbetler yapılmasını sağlayan bir mobil uygulamadır.
 ## Kurulum
 React Native
